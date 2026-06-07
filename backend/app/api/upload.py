@@ -1,7 +1,6 @@
 from fastapi import APIRouter, UploadFile, File, HTTPException
 import pandas as pd
-from fastapi import APIRouter, UploadFile, File, HTTPException
-import pandas as pd
+from app.services.analysis_service import analyze_failure_data
 
 from app.analytics.metrics import calculate_mtbf
 router = APIRouter()
@@ -35,8 +34,7 @@ async def upload_csv(file: UploadFile = File(...)):
             detail=f"Missing columns: {missing}"
         )
 
-    return {
-        "status": "success",
-        "rows": len(df),
-        "columns": list(df.columns)
-    }
+    result = analyze_failure_data(df)
+
+    return result
+    
