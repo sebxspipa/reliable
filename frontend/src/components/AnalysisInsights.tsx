@@ -122,7 +122,13 @@ export default function AnalysisInsights({ result }: AnalysisInsightsProps) {
         </div>
       </InsightCard>
 
-      <InsightCard title="Maintenance Recommendation">
+      <InsightCard title="Executive Summary & Maintenance Recommendation">
+        <p className="mt-2 leading-relaxed text-foreground">
+          Based on the analysis of {result.rows} failure records, the Weibull distribution
+          analysis reveals a shape parameter (β) of {result.beta.toFixed(2)}, indicating
+          {result.failure_pattern.toLowerCase()}. The characteristic life (η) is
+          {result.eta.toFixed(1)} hours, with an MTBF of {result.mtbf.toFixed(1)} hours.
+        </p>
         <p className="mt-2 leading-relaxed text-foreground">
           {result.recommendation}
         </p>

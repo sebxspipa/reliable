@@ -7,7 +7,7 @@ def generate_weibull_charts(
     failure_times: list[float],
     beta: float,
     eta: float,
-    points: int = 60,
+    points: int = 200,
 ) -> dict:
     t_max = max(failure_times) * 1.25 if failure_times else eta * 2
     t_values = np.linspace(0.1, t_max, points)
@@ -20,14 +20,14 @@ def generate_weibull_charts(
             "t": round(float(t), 2),
             "reliability": round(
                 float(weibull_min.sf(t, beta, loc=0, scale=eta)),
-                4,
+                6,
             ),
         })
         pdf_curve.append({
             "t": round(float(t), 2),
             "pdf": round(
                 float(weibull_min.pdf(t, beta, loc=0, scale=eta)),
-                6,
+                8,
             ),
         })
 
